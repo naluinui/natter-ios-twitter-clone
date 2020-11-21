@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Natter
-//
-//  Created by Somjintana Korbut on 21/11/2563 BE.
-//
-
 import UIKit
 
 @main
