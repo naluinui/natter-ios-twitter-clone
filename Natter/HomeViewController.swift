@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseAuth
 import FirebaseFirestore
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -15,6 +16,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if Auth.auth().currentUser != nil {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(openProfile))
+        }
         
         messagesQuery.addSnapshotListener { (snapshot, error) in
             guard let docs = snapshot?.documents else {
@@ -45,6 +50,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.textLabel?.text = post.caption
         cell.detailTextLabel?.text = "— \(post.ownerName) \(post.timeString)"
         return cell
+    }
+    
+    @objc func openProfile() {
+        performSegue(withIdentifier: "openProfile", sender: nil)
     }
 }
 

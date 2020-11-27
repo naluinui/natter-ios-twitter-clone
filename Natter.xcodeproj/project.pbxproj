@@ -23,6 +23,8 @@
 		AF130E4F2568E4200043EF62 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF130E4E2568E4200043EF62 /* LoginViewController.swift */; };
 		AF130E552568F0AE0043EF62 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF130E542568F0AE0043EF62 /* Post.swift */; };
 		AF6C70872570B1AD00B320CF /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6C70862570B1AD00B320CF /* PostCell.swift */; };
+		EDFFFAEA2570F4CE00FC191B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFFFAE92570F4CE00FC191B /* RegisterViewController.swift */; };
+		EDFFFAED2570FEBF00FC191B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFFFAEC2570FEBF00FC191B /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		AF130E4E2568E4200043EF62 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AF130E542568F0AE0043EF62 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AF6C70862570B1AD00B320CF /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		EDFFFAE92570F4CE00FC191B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		EDFFFAEC2570FEBF00FC191B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				AF130E282568C8500043EF62 /* HomeViewController.swift */,
 				AF130E4B2568E3CE0043EF62 /* PostViewController.swift */,
 				AF130E4E2568E4200043EF62 /* LoginViewController.swift */,
+				EDFFFAE92570F4CE00FC191B /* RegisterViewController.swift */,
+				EDFFFAEC2570FEBF00FC191B /* ProfileViewController.swift */,
 				AF130E2A2568C8500043EF62 /* Main.storyboard */,
 				AF130E2D2568C8520043EF62 /* Assets.xcassets */,
 				AF130E2F2568C8520043EF62 /* LaunchScreen.storyboard */,
@@ -192,8 +198,10 @@
 				AF6C70872570B1AD00B320CF /* PostCell.swift in Sources */,
 				AF130E4C2568E3CE0043EF62 /* PostViewController.swift in Sources */,
 				AF130E552568F0AE0043EF62 /* Post.swift in Sources */,
+				EDFFFAEA2570F4CE00FC191B /* RegisterViewController.swift in Sources */,
 				AF130E292568C8500043EF62 /* HomeViewController.swift in Sources */,
 				AF130E252568C8500043EF62 /* AppDelegate.swift in Sources */,
+				EDFFFAED2570FEBF00FC191B /* ProfileViewController.swift in Sources */,
 				AF130E4F2568E4200043EF62 /* LoginViewController.swift in Sources */,
 				AF130E272568C8500043EF62 /* SceneDelegate.swift in Sources */,
 			);
