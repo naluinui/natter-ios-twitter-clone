@@ -6,9 +6,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var tweetButton: UIButton!
+    
     var posts: [Post] = []
-    let messagesQuery = Firestore.firestore().collection("messages").order(by: "timestamp", descending: true)
-
+    var listener: ListenerRegistration?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -21,12 +22,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(openProfile))
         }
         
-        messagesQuery.addSnapshotListener { (snapshot, error) in
+        let query = Firestore.firestore().collection("messages").order(by: "timestamp", descending: true)
+        listener = query.addSnapshotListener { (snapshot, error) in
             guard let docs = snapshot?.documents else {
-                    print("Error fetching document: \(error!)")
-                    return
-                  }
-//                  print("Current data: \(docs)")
+                print("Error fetching document: \(error!)")
+                return
+            }
             self.posts = docs.compactMap { (docSnapshot) -> Post? in
                 return Post.from(doc: docSnapshot)
             }
@@ -37,7 +38,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        
+        listener?.remove()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
