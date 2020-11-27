@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseAuth
 import FirebaseFirestore
 
 class PostViewController: UIViewController, UITextViewDelegate {
@@ -18,21 +19,13 @@ class PostViewController: UIViewController, UITextViewDelegate {
         submitButton.isEnabled = false
     }
     
-    func textIsValid() -> Bool {
-        return textView.text != nil && (textView.text?.count ?? 0) <= maxLength
-    }
-    
     @IBAction func submit() {
-        if (!textIsValid()) { return }
-        Firestore.firestore().collection("posts").addDocument(data: [
-            "text": textView.text ?? "",
-            "timestamp": FieldValue.serverTimestamp(),
-            "user": [
-                "id": "abc",
-                "name": "TheRealTrump"
-            ],
-            "userId": "abc"
-        ]) { (err) in
+        guard let user = Auth.auth().currentUser, let displayName = user.displayName else {
+            print("You are not logged in!")
+            return
+        }
+        let post = Post(caption: textView.text ?? "", timestamp: Date(), owner: User(id: user.uid, name: displayName, imageURL: ""))
+        Firestore.firestore().collection("posts").addDocument(data: post.toDict()) { (err) in
             if let error = err {
                 print("error creating post: \(error)")
             } else {

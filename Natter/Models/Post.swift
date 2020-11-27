@@ -18,6 +18,18 @@ struct Post: Codable {
         dateformatter.timeStyle = .short
         return dateformatter.string(from: timestamp)
     }
+    
+    func toDict() -> [String: Any] {
+        return [
+            "text": caption,
+            "timestamp": Timestamp(date: timestamp),
+            "user": [
+                "id": owner.id,
+                "name": owner.name
+            ],
+            "userId": owner.id
+        ]
+    }
 
     public static func from(doc: DocumentSnapshot) -> Post? {
         print("get post from doc: \(doc.description)")        

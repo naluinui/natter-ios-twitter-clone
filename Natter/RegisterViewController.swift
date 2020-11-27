@@ -37,22 +37,16 @@ class RegisterViewController: UIViewController {
                 return
             }
             
-            // Add user data to Firebase Firestore in the "users" collection
-            let userId = authResult.user.uid
-            let userData = [
-                "name": username,
-                "email": email,
-            ]
-            Firestore.firestore().collection("users").document(userId).setData(userData) { error in
-                guard error == nil else {
-                    strongSelf.errorLabel.text = error!.localizedDescription
-                    print("Error writing document: \(error!)")
-                    return
+            let changeRequest = authResult.user.createProfileChangeRequest()
+            changeRequest.displayName = username
+            changeRequest.commitChanges { (error) in
+                if let error = error {
+                    print("Error updating profile: \(error)")
+                } else {
+                    // Complete (we are logged in!)
+                    strongSelf.activityIndicator.stopAnimating()
+                    strongSelf.navigationController?.popToRootViewController(animated: true)
                 }
-                
-                // Complete (we are logged in!)
-                strongSelf.activityIndicator.stopAnimating()
-                strongSelf.navigationController?.popToRootViewController(animated: true)
             }
         }
     }
