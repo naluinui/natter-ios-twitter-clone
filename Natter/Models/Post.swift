@@ -7,7 +7,7 @@ struct Post: Codable {
     let owner: User
     
     enum CodingKeys: String, CodingKey {
-        case caption = "text"
+        case caption
         case timestamp
         case owner = "user"
     }
@@ -18,10 +18,24 @@ struct Post: Codable {
         dateformatter.timeStyle = .short
         return dateformatter.string(from: timestamp)
     }
+
+    public static func from(doc: DocumentSnapshot) -> Post? {
+        guard let data = doc.data(),
+              let user = data["user"] as? [String: Any],
+              let userId = user["id"] as? String,
+              let username = user["name"] as? String,
+              let caption = data["caption"] as? String,
+              let timestamp = data["timestamp"] as? Timestamp
+        else {
+            return nil
+        }
+        
+        return Post(caption: caption, timestamp: timestamp.dateValue(), owner: User(id: userId, name: username))
+    }
     
     func toDict() -> [String: Any] {
         return [
-            "text": caption,
+            "caption": caption,
             "timestamp": Timestamp(date: timestamp),
             "user": [
                 "id": owner.id,
@@ -29,18 +43,5 @@ struct Post: Codable {
             ],
             "userId": owner.id
         ]
-    }
-
-    public static func from(doc: DocumentSnapshot) -> Post? {
-        guard let data = doc.data(),
-              let user = data["user"] as? [String: Any],
-              let username = user["name"] as? String,
-              let caption = data["text"] as? String,
-              let timestamp = data["timestamp"] as? Timestamp
-        else {
-            return nil
-        }
-        
-        return Post(caption: caption, timestamp: timestamp.dateValue(), owner: User(id: "abc", name: username))
     }
 }
