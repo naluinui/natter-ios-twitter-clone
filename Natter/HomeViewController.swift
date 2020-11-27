@@ -7,7 +7,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet var tableView: UITableView!
     @IBOutlet var tweetButton: UIButton!
     var posts: [Post] = []
-    let messagesQuery = Firestore.firestore().collection("messages").order(by: "timestamp", descending: true)
+    let messagesQuery = Firestore.firestore().collection("posts").order(by: "timestamp", descending: true)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +23,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         messagesQuery.addSnapshotListener { (snapshot, error) in
             guard let docs = snapshot?.documents else {
-                    print("Error fetching document: \(error!)")
-                    return
-                  }
-//                  print("Current data: \(docs)")
+                print("Error fetching document: \(error!)")
+                return
+            }
             self.posts = docs.compactMap { (docSnapshot) -> Post? in
                 return Post.from(doc: docSnapshot)
             }
@@ -48,6 +47,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "PostCell")
         let post = posts[indexPath.row]
         cell.textLabel?.text = post.caption
+        cell.textLabel?.numberOfLines = 0
         cell.detailTextLabel?.text = "— \(post.ownerName) \(post.timeString)"
         return cell
     }

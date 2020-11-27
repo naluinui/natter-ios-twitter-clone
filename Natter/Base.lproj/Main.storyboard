@@ -316,31 +316,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What's up?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vUr-cV-udt">
-                                <rect key="frame" x="20" y="108" width="374" height="25.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sgM-qr-Z3j">
-                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="frJ-Lc-Lfc">
+                                <rect key="frame" x="20" y="108" width="374" height="734"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's up?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4t0-c7-wNz">
+                                <rect key="frame" x="24" y="116" width="86" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="placeholderTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJb-2c-eHz">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
-                                    <barButtonItem title="Item" id="PFS-6f-pXi"/>
+                                    <barButtonItem style="plain" id="cDY-OZ-Kb2">
+                                        <view key="customView" contentMode="scaleToFill" id="XlJ-rX-Urw">
+                                            <rect key="frame" x="20" y="9" width="374" height="36"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNu-BE-ZqD">
+                                                    <rect key="frame" x="330.5" y="7.5" width="43.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="uNu-BE-ZqD" firstAttribute="centerY" secondItem="XlJ-rX-Urw" secondAttribute="centerY" id="KgU-Ls-m3e"/>
+                                                <constraint firstAttribute="trailing" secondItem="uNu-BE-ZqD" secondAttribute="trailing" id="fGs-aZ-XAe"/>
+                                            </constraints>
+                                        </view>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ds7-Wb-dJQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vUr-cV-udt" firstAttribute="top" secondItem="Ds7-Wb-dJQ" secondAttribute="top" constant="20" id="Gfn-cn-kot"/>
-                            <constraint firstItem="vUr-cV-udt" firstAttribute="leading" secondItem="Ds7-Wb-dJQ" secondAttribute="leading" constant="20" id="Q0L-NM-5kY"/>
-                            <constraint firstItem="Ds7-Wb-dJQ" firstAttribute="trailing" secondItem="vUr-cV-udt" secondAttribute="trailing" constant="20" id="nUF-ln-jaQ"/>
+                            <constraint firstItem="frJ-Lc-Lfc" firstAttribute="top" secondItem="Ds7-Wb-dJQ" secondAttribute="top" constant="20" id="BQC-3U-MUV"/>
+                            <constraint firstItem="Ds7-Wb-dJQ" firstAttribute="bottom" secondItem="frJ-Lc-Lfc" secondAttribute="bottom" constant="20" id="JwT-NC-Gss"/>
+                            <constraint firstItem="Ds7-Wb-dJQ" firstAttribute="bottom" secondItem="PJb-2c-eHz" secondAttribute="bottom" id="L1J-1K-LFs"/>
+                            <constraint firstItem="PJb-2c-eHz" firstAttribute="leading" secondItem="Ds7-Wb-dJQ" secondAttribute="leading" id="dHh-1g-bPm"/>
+                            <constraint firstItem="PJb-2c-eHz" firstAttribute="trailing" secondItem="Ds7-Wb-dJQ" secondAttribute="trailing" id="eoR-CX-YTg"/>
+                            <constraint firstItem="Ds7-Wb-dJQ" firstAttribute="trailing" secondItem="frJ-Lc-Lfc" secondAttribute="trailing" constant="20" id="iyU-eV-C2D"/>
+                            <constraint firstItem="4t0-c7-wNz" firstAttribute="top" secondItem="Ds7-Wb-dJQ" secondAttribute="top" constant="28" id="n2s-Zz-W2p"/>
+                            <constraint firstItem="4t0-c7-wNz" firstAttribute="leading" secondItem="Ds7-Wb-dJQ" secondAttribute="leading" constant="24" id="rUQ-kG-eMq"/>
+                            <constraint firstItem="frJ-Lc-Lfc" firstAttribute="leading" secondItem="Ds7-Wb-dJQ" secondAttribute="leading" constant="20" id="zvh-HJ-IJx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Post" id="LYU-lh-Am9">
                         <barButtonItem key="backBarButtonItem" title=" " id="QPJ-69-vTy"/>
-                        <barButtonItem key="rightBarButtonItem" title="Post" style="done" id="kmP-aE-WV0"/>
+                        <barButtonItem key="rightBarButtonItem" title="Post" style="done" id="kmP-aE-WV0">
+                            <connections>
+                                <action selector="submit" destination="Qpj-oV-94f" id="b4t-7Y-aNZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="placeholderLabel" destination="4t0-c7-wNz" id="ete-S7-iGA"/>
+                        <outlet property="textCountLabel" destination="uNu-BE-ZqD" id="3wi-QP-nLa"/>
+                        <outlet property="textView" destination="frJ-Lc-Lfc" id="1oA-oT-SbV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xBr-1A-kiY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -369,6 +408,12 @@
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
