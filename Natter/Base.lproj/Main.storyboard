@@ -324,7 +324,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's up?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4t0-c7-wNz">
-                                <rect key="frame" x="24" y="116" width="86" height="21"/>
+                                <rect key="frame" x="24" y="118" width="86" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="placeholderTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -362,8 +362,8 @@
                             <constraint firstItem="PJb-2c-eHz" firstAttribute="leading" secondItem="Ds7-Wb-dJQ" secondAttribute="leading" id="dHh-1g-bPm"/>
                             <constraint firstItem="PJb-2c-eHz" firstAttribute="trailing" secondItem="Ds7-Wb-dJQ" secondAttribute="trailing" id="eoR-CX-YTg"/>
                             <constraint firstItem="Ds7-Wb-dJQ" firstAttribute="trailing" secondItem="frJ-Lc-Lfc" secondAttribute="trailing" constant="20" id="iyU-eV-C2D"/>
-                            <constraint firstItem="4t0-c7-wNz" firstAttribute="top" secondItem="Ds7-Wb-dJQ" secondAttribute="top" constant="28" id="n2s-Zz-W2p"/>
-                            <constraint firstItem="4t0-c7-wNz" firstAttribute="leading" secondItem="Ds7-Wb-dJQ" secondAttribute="leading" constant="24" id="rUQ-kG-eMq"/>
+                            <constraint firstItem="4t0-c7-wNz" firstAttribute="leading" secondItem="frJ-Lc-Lfc" secondAttribute="leading" constant="4" id="lgP-Gy-ivg"/>
+                            <constraint firstItem="4t0-c7-wNz" firstAttribute="top" secondItem="frJ-Lc-Lfc" secondAttribute="top" constant="10" id="v2H-d9-cHP"/>
                             <constraint firstItem="frJ-Lc-Lfc" firstAttribute="leading" secondItem="Ds7-Wb-dJQ" secondAttribute="leading" constant="20" id="zvh-HJ-IJx"/>
                         </constraints>
                     </view>
@@ -379,6 +379,7 @@
                         <outlet property="placeholderLabel" destination="4t0-c7-wNz" id="ete-S7-iGA"/>
                         <outlet property="textCountLabel" destination="uNu-BE-ZqD" id="3wi-QP-nLa"/>
                         <outlet property="textView" destination="frJ-Lc-Lfc" id="1oA-oT-SbV"/>
+                        <outlet property="toolbar" destination="PJb-2c-eHz" id="Ktg-3j-5rU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xBr-1A-kiY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

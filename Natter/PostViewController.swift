@@ -8,11 +8,12 @@ class PostViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var textCountLabel: UILabel!
     @IBOutlet weak var placeholderLabel: UILabel!
+    @IBOutlet weak var toolbar: UIToolbar!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        textView.becomeFirstResponder()
         textView.delegate = self
+        textView.inputAccessoryView = toolbar
     }
     
     func textIsValid() -> Bool {
