@@ -1,10 +1,16 @@
 import Foundation
 import FirebaseFirestore
 
-struct Post {
+struct Post: Codable {
     let caption: String
     let timestamp: Date
     let ownerName: String
+    
+    enum CodingKeys: String, CodingKey {
+        case caption = "text"
+        case timestamp
+        case ownerName
+    }
     
     var timeString: String {
         let dateformatter = DateFormatter()

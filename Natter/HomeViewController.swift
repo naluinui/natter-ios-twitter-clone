@@ -49,6 +49,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "PostCell")
         let post = posts[indexPath.row]
         cell.textLabel?.text = post.caption
+        cell.textLabel?.numberOfLines = 0
         cell.detailTextLabel?.text = "— \(post.ownerName) \(post.timeString)"
         return cell
     }
