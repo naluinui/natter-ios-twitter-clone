@@ -1,11 +1,17 @@
 import UIKit
 
-class PostViewController: UIViewController {
+class PostViewController: UIViewController, UITextFieldDelegate {
+    
+    @IBOutlet weak var textField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        textField.delegate = self
+        textField.becomeFirstResponder()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return (textField.text?.count ?? 0) < 140
     }
     
 }

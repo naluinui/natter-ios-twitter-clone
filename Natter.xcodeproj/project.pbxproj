@@ -21,6 +21,8 @@
 		AF130E492568E0180043EF62 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF130E482568E0170043EF62 /* GoogleService-Info.plist */; };
 		AF130E4C2568E3CE0043EF62 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF130E4B2568E3CE0043EF62 /* PostViewController.swift */; };
 		AF130E4F2568E4200043EF62 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF130E4E2568E4200043EF62 /* LoginViewController.swift */; };
+		AF130E552568F0AE0043EF62 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF130E542568F0AE0043EF62 /* Post.swift */; };
+		AF6C70872570B1AD00B320CF /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6C70862570B1AD00B320CF /* PostCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		AF130E482568E0170043EF62 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AF130E4B2568E3CE0043EF62 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		AF130E4E2568E4200043EF62 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AF130E542568F0AE0043EF62 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		AF6C70862570B1AD00B320CF /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,8 @@
 		AF130E232568C8500043EF62 /* Natter */ = {
 			isa = PBXGroup;
 			children = (
+				AF6C70852570B19500B320CF /* Views */,
+				AF130E532568F0920043EF62 /* Models */,
 				AF130E242568C8500043EF62 /* AppDelegate.swift */,
 				AF130E262568C8500043EF62 /* SceneDelegate.swift */,
 				AF130E282568C8500043EF62 /* HomeViewController.swift */,
@@ -84,6 +90,22 @@
 				AF130E482568E0170043EF62 /* GoogleService-Info.plist */,
 			);
 			path = Natter;
+			sourceTree = "<group>";
+		};
+		AF130E532568F0920043EF62 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AF130E542568F0AE0043EF62 /* Post.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AF6C70852570B19500B320CF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AF6C70862570B1AD00B320CF /* PostCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,7 +189,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF6C70872570B1AD00B320CF /* PostCell.swift in Sources */,
 				AF130E4C2568E3CE0043EF62 /* PostViewController.swift in Sources */,
+				AF130E552568F0AE0043EF62 /* Post.swift in Sources */,
 				AF130E292568C8500043EF62 /* HomeViewController.swift in Sources */,
 				AF130E252568C8500043EF62 /* AppDelegate.swift in Sources */,
 				AF130E4F2568E4200043EF62 /* LoginViewController.swift in Sources */,
