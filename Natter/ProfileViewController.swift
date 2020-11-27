@@ -92,14 +92,24 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
         }
     }
 
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
-        //avatarImageView.image = image
-        
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as! UIImage
+        self.avatarImageView.image = image
         uploadUserImage(userId: userId, image: image) { (error) in
             if let error = error {
                 print("Error: \(error)")
             }
             picker.dismiss(animated: true)
         }
-   }
+    }
+//    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
+//        //avatarImageView.image = image
+//
+//        uploadUserImage(userId: userId, image: image) { (error) in
+//            if let error = error {
+//                print("Error: \(error)")
+//            }
+//            picker.dismiss(animated: true)
+//        }
+//   }
 }

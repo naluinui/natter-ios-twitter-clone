@@ -176,7 +176,7 @@
                                             </constraints>
                                             <state key="normal" title="Choose Avatar"/>
                                             <connections>
-                                                <action selector="logout" destination="pPw-1P-aCR" eventType="touchUpInside" id="cP7-zt-Saa"/>
+                                                <action selector="chooseAvatar" destination="pPw-1P-aCR" eventType="touchUpInside" id="MAC-BA-7IO"/>
                                             </connections>
                                         </button>
                                     </subviews>
