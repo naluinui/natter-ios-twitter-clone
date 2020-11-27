@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewWillAppear(animated)
         
         if Auth.auth().currentUser != nil {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(openProfile))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(openMyProfile))
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log In", style: .plain, target: self, action: #selector(openLogin))
         }
@@ -60,12 +60,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         openProfile(userId: user.id)
     }
     
+    @objc func openMyProfile() {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        openProfile(userId: userId)
+    }
+    
     @objc func openProfile(userId: String) {
         performSegue(withIdentifier: "openProfile", sender: userId)
     }
     
     @objc func openLogin() {
         performSegue(withIdentifier: "login", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "openProfile", let profileVC = segue.destination as? ProfileViewController, let userId = sender as? String {
+            profileVC.userId = userId
+        }
     }
 }
 
