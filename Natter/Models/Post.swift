@@ -30,6 +30,6 @@ struct Post: Codable {
             return nil
         }
         
-        return Post(caption: caption, timestamp: timestamp.dateValue(), owner: User(id: "abc", name: username, imageURL: ""))
+        return Post(caption: caption, timestamp: timestamp.dateValue(), owner: User(id: "abc", name: username))
     }
 }

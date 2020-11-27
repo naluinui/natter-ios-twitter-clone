@@ -26,6 +26,7 @@
 		EDFFFAEA2570F4CE00FC191B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFFFAE92570F4CE00FC191B /* RegisterViewController.swift */; };
 		EDFFFAED2570FEBF00FC191B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFFFAEC2570FEBF00FC191B /* ProfileViewController.swift */; };
 		EDFFFAF125710AAA00FC191B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFFFAF025710AAA00FC191B /* User.swift */; };
+		EDFFFAF52571623400FC191B /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFFFAF42571623400FC191B /* Storage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		EDFFFAE92570F4CE00FC191B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		EDFFFAEC2570FEBF00FC191B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EDFFFAF025710AAA00FC191B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EDFFFAF42571623400FC191B /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Storage.swift; path = Natter/Models/Storage.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		AF6C708A2570F7F800B320CF /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				EDFFFAF42571623400FC191B /* Storage.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF6C70872570B1AD00B320CF /* PostCell.swift in Sources */,
+				EDFFFAF52571623400FC191B /* Storage.swift in Sources */,
 				AF130E4C2568E3CE0043EF62 /* PostViewController.swift in Sources */,
 				AF130E552568F0AE0043EF62 /* Post.swift in Sources */,
 				EDFFFAEA2570F4CE00FC191B /* RegisterViewController.swift in Sources */,

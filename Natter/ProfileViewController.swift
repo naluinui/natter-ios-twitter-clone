@@ -45,6 +45,11 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
             guard let user = User.from(doc: doc) else { return }
             self.usernameLabel.text = user.name
         }
+        downloadUserImage(userId: userId) { (image) in
+            if let image = image {
+                self.avatarImageView.image = image
+            }
+        }
     }
     
     func loadPosts() {
