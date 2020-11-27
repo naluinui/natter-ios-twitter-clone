@@ -21,6 +21,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if Auth.auth().currentUser != nil {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(openProfile))
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log In", style: .plain, target: self, action: #selector(openLogin))
         }
         
         let query = Firestore.firestore().collection("posts").order(by: "timestamp", descending: true)
@@ -55,6 +57,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @objc func openProfile() {
         performSegue(withIdentifier: "openProfile", sender: nil)
+    }
+    
+    @objc func openLogin() {
+        performSegue(withIdentifier: "login", sender: nil)
     }
 }
 
