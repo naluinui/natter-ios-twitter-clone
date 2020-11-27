@@ -2,7 +2,8 @@ import UIKit
 import FirebaseStorage
 
 func uploadUserImage(userId: String, image: UIImage, completion: @escaping (Error?) -> ()) {
-    guard let data = image.jpegData(compressionQuality: 0.6) else {
+    let compressedData = resize(image, to: CGSize(width: 250, height: 250)).jpegData(compressionQuality: 0.6)
+    guard let data = compressedData else {
         completion(NSError())
         return
     }
@@ -26,4 +27,12 @@ func downloadUserImage(userId: String, completion: @escaping (UIImage?) -> Void)
 
 fileprivate func storageRef(userId: String) -> StorageReference {
     return Storage.storage().reference(withPath: "users/\(userId).jpg")
+}
+
+fileprivate func resize(_ image: UIImage, to newSize: CGSize) -> UIImage {
+    let renderer = UIGraphicsImageRenderer(size: newSize)
+    let image = renderer.image { _ in
+        image.draw(in: CGRect.init(origin: CGPoint.zero, size: newSize))
+    }
+    return image.withRenderingMode(image.renderingMode)
 }
