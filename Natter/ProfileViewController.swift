@@ -2,12 +2,13 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class ProfileViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProfileViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet var avatarImageView: UIImageView!
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var logoutButton: UIButton!
+    @IBOutlet var chooseAvatarButton: UIButton!
     
     var posts: [Post] = []
     var userId: String = Auth.auth().currentUser?.uid ?? ""
@@ -24,6 +25,7 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
         
         if (userId == Auth.auth().currentUser?.uid) {
             logoutButton.isHidden = false
+            chooseAvatarButton.isHidden = false
         }
         
         loadUser()
@@ -80,4 +82,34 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
         try? Auth.auth().signOut()
         navigationController?.popToRootViewController(animated: true)
     }
+    
+    @IBAction func chooseAvatar() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = .photoLibrary
+            present(picker, animated: true)
+        }
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as! UIImage
+        self.avatarImageView.image = image
+        uploadUserImage(userId: userId, image: image) { (error) in
+            if let error = error {
+                print("Error: \(error)")
+            }
+            picker.dismiss(animated: true)
+        }
+    }
+//    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
+//        //avatarImageView.image = image
+//
+//        uploadUserImage(userId: userId, image: image) { (error) in
+//            if let error = error {
+//                print("Error: \(error)")
+//            }
+//            picker.dismiss(animated: true)
+//        }
+//   }
 }

@@ -168,13 +168,26 @@
                                                 <action selector="logout" destination="pPw-1P-aCR" eventType="touchUpInside" id="6fN-tZ-XdG"/>
                                             </connections>
                                         </button>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="YET-b7-iyf">
+                                            <rect key="frame" x="341" y="62" width="53" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="AXs-5f-DaN"/>
+                                                <constraint firstAttribute="width" constant="53" id="KhC-z1-AoY"/>
+                                            </constraints>
+                                            <state key="normal" title="Choose Avatar"/>
+                                            <connections>
+                                                <action selector="chooseAvatar" destination="pPw-1P-aCR" eventType="touchUpInside" id="MAC-BA-7IO"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="0xy-GP-dfn" secondAttribute="bottom" constant="20" symbolic="YES" id="26G-T2-nm7"/>
+                                        <constraint firstItem="YET-b7-iyf" firstAttribute="centerY" secondItem="T9e-UC-VXs" secondAttribute="centerY" id="Ced-Dd-HVE"/>
                                         <constraint firstItem="T9e-UC-VXs" firstAttribute="centerX" secondItem="JR2-wJ-eKZ" secondAttribute="centerX" id="PcD-XV-MCx"/>
                                         <constraint firstAttribute="trailing" secondItem="1jP-N3-oGb" secondAttribute="trailing" constant="20" symbolic="YES" id="Q2n-0g-f7O"/>
                                         <constraint firstItem="T9e-UC-VXs" firstAttribute="top" secondItem="JR2-wJ-eKZ" secondAttribute="top" constant="20" symbolic="YES" id="Vac-gg-b5P"/>
+                                        <constraint firstAttribute="trailing" secondItem="YET-b7-iyf" secondAttribute="trailing" constant="20" symbolic="YES" id="VlA-Rb-zIY"/>
                                         <constraint firstItem="0xy-GP-dfn" firstAttribute="centerX" secondItem="JR2-wJ-eKZ" secondAttribute="centerX" id="krY-KZ-ZCl"/>
                                         <constraint firstItem="1jP-N3-oGb" firstAttribute="firstBaseline" secondItem="0xy-GP-dfn" secondAttribute="firstBaseline" id="nXh-wl-cqZ"/>
                                         <constraint firstItem="0xy-GP-dfn" firstAttribute="top" secondItem="T9e-UC-VXs" secondAttribute="bottom" constant="8" symbolic="YES" id="sZU-Rf-nAN"/>
@@ -224,6 +237,7 @@
                     <navigationItem key="navigationItem" title="User profile" id="T55-sV-faa"/>
                     <connections>
                         <outlet property="avatarImageView" destination="T9e-UC-VXs" id="jss-V7-NPJ"/>
+                        <outlet property="chooseAvatarButton" destination="YET-b7-iyf" id="YcG-hG-YPB"/>
                         <outlet property="logoutButton" destination="1jP-N3-oGb" id="T5f-EC-0zU"/>
                         <outlet property="tableView" destination="aaA-gR-45g" id="aaB-mj-xaX"/>
                         <outlet property="usernameLabel" destination="0xy-GP-dfn" id="rSv-PA-btf"/>
