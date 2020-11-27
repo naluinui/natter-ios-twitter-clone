@@ -7,6 +7,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet var tableView: UITableView!
     @IBOutlet var tweetButton: UIButton!
     
+    var user
+    
     var posts: [Post] = []
     var listener: ListenerRegistration?
     
@@ -55,11 +57,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell ?? UITableViewCell()
     }
     
-    @objc func openProfile() {
-        performSegue(withIdentifier: "openProfile", sender: nil)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = posts[indexPath.row].owner
+        openProfile(user: user)
     }
     
-    @objc func openLogin() {
+    func openProfile(user: User) {
+        performSegue(withIdentifier: "openProfile", sender: user)
+    }
+    
+    func openLogin() {
         performSegue(withIdentifier: "login", sender: nil)
     }
 }
