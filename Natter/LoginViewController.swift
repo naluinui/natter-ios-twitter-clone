@@ -15,13 +15,15 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func submitPressed() {
+        guard let email = emailField.text, let password = passwordField.text else { return }
+        
         activityIndicator.startAnimating()
-        if let email = emailField.text, let password = passwordField.text {
-            Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-                guard let strongSelf = self else { return }
-                strongSelf.activityIndicator.stopAnimating()
-                strongSelf.navigationController?.popToRootViewController(animated: true)
-            }
+    
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let strongSelf = self else { return }
+            
+            strongSelf.activityIndicator.stopAnimating()
+            strongSelf.navigationController?.popToRootViewController(animated: true)
         }
     }
 

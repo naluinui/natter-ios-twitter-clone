@@ -7,13 +7,24 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet var avatarImageView: UIImageView!
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var logoutButton: UIButton!
     
     var posts: [Post] = []
     var userId: String = Auth.auth().currentUser?.uid ?? ""
     var listener: ListenerRegistration?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        usernameLabel.text = ""
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if (userId == Auth.auth().currentUser?.uid) {
+            logoutButton.isHidden = false
+        }
         
         loadUser()
         loadPosts()
@@ -27,7 +38,7 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
     
     func loadUser() {
         Firestore.firestore().collection("users").document(userId).getDocument { (snapshot, error) in
-            guard let doc = snapshot, doc.exists else {
+            guard let doc = snapshot else {
                 print("Error fetching document: \(error!)")
                 return
             }
@@ -60,5 +71,8 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
-    
+    @IBAction func logout() {
+        try? Auth.auth().signOut()
+        navigationController?.popToRootViewController(animated: true)
+    }
 }
