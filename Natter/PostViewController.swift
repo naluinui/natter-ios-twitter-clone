@@ -6,6 +6,7 @@ class PostViewController: UIViewController, UITextViewDelegate {
     let maxLength = 140
     
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var submitButton: UIBarButtonItem!
     @IBOutlet weak var textCountLabel: UILabel!
     @IBOutlet weak var placeholderLabel: UILabel!
     @IBOutlet weak var toolbar: UIToolbar!
@@ -14,6 +15,7 @@ class PostViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         textView.delegate = self
         textView.inputAccessoryView = toolbar
+        submitButton.isEnabled = false
     }
     
     func textIsValid() -> Bool {
@@ -44,6 +46,7 @@ class PostViewController: UIViewController, UITextViewDelegate {
         let textCount = textView.text.count
         textCountLabel.text = "\(textCount)/\(maxLength)"
         placeholderLabel.isHidden = textCount > 0
+        submitButton.isEnabled = textCount > 0
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

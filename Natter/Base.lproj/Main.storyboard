@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="106" id="M0B-nj-0Yd">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="106" id="M0B-nj-0Yd" customClass="PostCell" customModule="Natter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="106"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M0B-nj-0Yd" id="wOi-68-bU6">
@@ -68,6 +68,12 @@
                                                 <constraint firstItem="lnb-Ll-Nw9" firstAttribute="top" secondItem="KO3-DT-sfR" secondAttribute="centerY" id="viO-xA-jez"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="captionLabel" destination="hHS-2a-Nch" id="qtF-Nl-RQi"/>
+                                            <outlet property="nameLabel" destination="wf0-GF-M6p" id="s1d-hd-HER"/>
+                                            <outlet property="profileImageView" destination="KO3-DT-sfR" id="Js0-k9-2Xl"/>
+                                            <outlet property="timeLabel" destination="lnb-Ll-Nw9" id="hbc-IU-2E9"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -75,14 +81,15 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="9M5-xO-eUF"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1cA-nS-euK">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1cA-nS-euK">
                                 <rect key="frame" x="330" y="778" width="64" height="64"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="6yG-Ct-eHE"/>
                                     <constraint firstAttribute="width" constant="64" id="Kko-aM-grd"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="new_tweet"/>
                                 <connections>
                                     <segue destination="Qpj-oV-94f" kind="show" identifier="openPost" id="zRK-bt-Y5w"/>
                                 </connections>
@@ -330,7 +337,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJb-2c-eHz">
-                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <rect key="frame" x="0.0" y="867" width="414" height="49"/>
                                 <items>
                                     <barButtonItem style="plain" id="cDY-OZ-Kb2">
                                         <view key="customView" contentMode="scaleToFill" id="XlJ-rX-Urw">
@@ -377,6 +384,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="placeholderLabel" destination="4t0-c7-wNz" id="ete-S7-iGA"/>
+                        <outlet property="submitButton" destination="kmP-aE-WV0" id="InS-d7-REK"/>
                         <outlet property="textCountLabel" destination="uNu-BE-ZqD" id="3wi-QP-nLa"/>
                         <outlet property="textView" destination="frJ-Lc-Lfc" id="1oA-oT-SbV"/>
                         <outlet property="toolbar" destination="PJb-2c-eHz" id="Ktg-3j-5rU"/>
@@ -406,6 +414,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="new_tweet" width="36" height="36"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

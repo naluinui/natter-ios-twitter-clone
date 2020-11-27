@@ -4,12 +4,12 @@ import FirebaseFirestore
 struct Post: Codable {
     let caption: String
     let timestamp: Date
-    let ownerName: String
+    let owner: User
     
     enum CodingKeys: String, CodingKey {
         case caption = "text"
         case timestamp
-        case ownerName
+        case owner = "user"
     }
     
     var timeString: String {
@@ -30,6 +30,6 @@ struct Post: Codable {
             return nil
         }
         
-        return Post(caption: caption, timestamp: timestamp.dateValue(), ownerName: username)
+        return Post(caption: caption, timestamp: timestamp.dateValue(), owner: User(id: "abc", name: username, imageURL: ""))
     }
 }

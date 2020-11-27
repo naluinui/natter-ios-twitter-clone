@@ -12,7 +12,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        tweetButton.layer.cornerRadius = tweetButton.frame.width/2
+        tweetButton.layer.masksToBounds = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -22,7 +23,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(openProfile))
         }
         
-        let query = Firestore.firestore().collection("messages").order(by: "timestamp", descending: true)
+        let query = Firestore.firestore().collection("posts").order(by: "timestamp", descending: true)
         listener = query.addSnapshotListener { (snapshot, error) in
             guard let docs = snapshot?.documents else {
                 print("Error fetching document: \(error!)")
@@ -46,12 +47,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "PostCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell
         let post = posts[indexPath.row]
-        cell.textLabel?.text = post.caption
-        cell.textLabel?.numberOfLines = 0
-        cell.detailTextLabel?.text = "— \(post.ownerName) \(post.timeString)"
-        return cell
+        cell?.set(post: post)
+        return cell ?? UITableViewCell()
     }
     
     @objc func openProfile() {

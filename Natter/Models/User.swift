@@ -1,7 +1,7 @@
 import Foundation
 import FirebaseFirestore
 
-struct User {
+struct User: Codable {
     let id: String
     let name: String
     let imageURL: String
