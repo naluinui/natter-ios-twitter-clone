@@ -1,9 +1,11 @@
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class RegisterViewController: UIViewController {
     
     @IBOutlet var submitButton: UIButton!
+    @IBOutlet var usernameField: UITextField!
     @IBOutlet var emailField: UITextField!
     @IBOutlet var passwordField: UITextField!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
@@ -13,21 +15,44 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
 
         errorLabel.text = ""
-        emailField.becomeFirstResponder()
+        usernameField.becomeFirstResponder()
     }
     
     @IBAction func submitPressed() {
+        guard let username = usernameField.text, let email = emailField.text, let password = passwordField.text else {
+            errorLabel.text = "Did you miss something?"
+            return
+        }
+        
+        errorLabel.text = ""
         activityIndicator.startAnimating()
-        if let email = emailField.text, let password = passwordField.text {
-            Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
-                guard let strongSelf = self else { return }
-                
-                if let error = error {
-                    
-                } else {
-                    strongSelf.activityIndicator.stopAnimating()
-                    strongSelf.navigationController?.popToRootViewController(animated: true)
+        
+        // Create user in Firebase Authentication
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let strongSelf = self else { return }
+            
+            guard let authResult = authResult else {
+                strongSelf.errorLabel.text = error!.localizedDescription
+                print("Error creating user: \(error!)")
+                return
+            }
+            
+            // Add user data to Firebase Firestore in the "users" collection
+            let userId = authResult.user.uid
+            let userData = [
+                "name": username,
+                "email": email,
+            ]
+            Firestore.firestore().collection("users").document(userId).setData(userData) { error in
+                guard error == nil else {
+                    strongSelf.errorLabel.text = error!.localizedDescription
+                    print("Error writing document: \(error!)")
+                    return
                 }
+                
+                // Complete (we are logged in!)
+                strongSelf.activityIndicator.stopAnimating()
+                strongSelf.navigationController?.popToRootViewController(animated: true)
             }
         }
     }

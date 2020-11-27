@@ -7,13 +7,24 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet var avatarImageView: UIImageView!
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var logoutButton: UIButton!
     
     var posts: [Post] = []
     var userId: String = Auth.auth().currentUser?.uid ?? ""
     var listener: ListenerRegistration?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        usernameLabel.text = ""
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if (userId == Auth.auth().currentUser?.uid) {
+            logoutButton.isHidden = false
+        }
         
         loadUser()
         loadPosts()
@@ -27,8 +38,8 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
     
     func loadUser() {
         Firestore.firestore().collection("users").document(userId).getDocument { (snapshot, error) in
-            guard let doc = snapshot, doc.exists else {
-                print("Error fetching document: \(String(describing: error))")
+            guard let doc = snapshot else {
+                print("Error fetching document: \(error!)")
                 return
             }
             guard let user = User.from(doc: doc) else { return }
@@ -56,9 +67,12 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "PostCell")
         let post = posts[indexPath.row]
         cell.textLabel?.text = post.caption
-        cell.detailTextLabel?.text = "— \(post.owner.name) \(post.timeString)"
+        cell.detailTextLabel?.text = "— \(post.ownerName) \(post.timeString)"
         return cell
     }
     
-    
+    @IBAction func logout() {
+        try? Auth.auth().signOut()
+        navigationController?.popToRootViewController(animated: true)
+    }
 }

@@ -8,11 +8,12 @@ struct User: Codable {
 
     public static func from(doc: DocumentSnapshot) -> User? {
         guard let data = doc.data(),
-            let name = data["name"] as? String,
-            let imageURL = data["imageUrl"] as? String
+            let name = data["name"] as? String
         else {
             return nil
         }
+        
+        let imageURL = data["imageUrl"] as? String ?? ""
         
         return User(id: doc.documentID, name: name, imageURL: imageURL)
     }
