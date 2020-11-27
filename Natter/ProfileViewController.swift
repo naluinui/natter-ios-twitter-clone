@@ -67,7 +67,7 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "PostCell")
         let post = posts[indexPath.row]
         cell.textLabel?.text = post.caption
-        cell.detailTextLabel?.text = "— \(post.ownerName) \(post.timeString)"
+        cell.detailTextLabel?.text = "— \(post.owner.name) \(post.timeString)"
         return cell
     }
     
