@@ -1,10 +1,3 @@
-//
-//  PostCell.swift
-//  Natter
-//
-//  Created by Somjintana Korbut on 27/11/2563 BE.
-//
-
 import UIKit
 
 class PostCell: UITableViewCell {

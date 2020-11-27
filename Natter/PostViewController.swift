@@ -24,7 +24,7 @@ class PostViewController: UIViewController, UITextViewDelegate {
             print("You are not logged in!")
             return
         }
-        let post = Post(caption: textView.text ?? "", timestamp: Date(), owner: User(id: user.uid, name: displayName, imageURL: ""))
+        let post = Post(caption: textView.text ?? "", timestamp: Date(), owner: User(id: user.uid, name: displayName))
         Firestore.firestore().collection("posts").addDocument(data: post.toDict()) { (err) in
             if let error = err {
                 print("error creating post: \(error)")

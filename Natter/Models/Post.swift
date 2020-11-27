@@ -32,7 +32,6 @@ struct Post: Codable {
     }
 
     public static func from(doc: DocumentSnapshot) -> Post? {
-        print("get post from doc: \(doc.description)")        
         guard let data = doc.data(),
               let user = data["user"] as? [String: Any],
               let username = user["name"] as? String,
