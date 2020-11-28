@@ -21,8 +21,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if Auth.auth().currentUser != nil {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(openMyProfile))
+            tweetButton.isEnabled = true
         } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log In", style: .plain, target: self, action: #selector(openLogin))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign In", style: .plain, target: self, action: #selector(openLogin))
+            tweetButton.isEnabled = false
         }
         
         let query = Firestore.firestore().collection("posts").order(by: "timestamp", descending: true)

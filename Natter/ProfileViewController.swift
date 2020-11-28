@@ -71,11 +71,10 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "PostCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell
         let post = posts[indexPath.row]
-        cell.textLabel?.text = post.caption
-        cell.detailTextLabel?.text = "— \(post.owner.name) \(post.timeString)"
-        return cell
+        cell?.set(post: post)
+        return cell ?? UITableViewCell()
     }
     
     @IBAction func logout() {

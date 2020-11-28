@@ -48,6 +48,21 @@ class RegisterViewController: UIViewController {
                     strongSelf.navigationController?.popToRootViewController(animated: true)
                 }
             }
+            
+            // Add user data to Firebase Firestore in the "users" collection
+            let userId = authResult.user.uid
+            let userData = [
+                "name": username,
+                "email": email,
+            ]
+            Firestore.firestore().collection("users").document(userId).setData(userData) { error in
+                guard error == nil else {
+                    strongSelf.errorLabel.text = error!.localizedDescription
+                    print("Error writing document: \(error!)")
+                    return
+                }
+            }
+            
         }
     }
 
