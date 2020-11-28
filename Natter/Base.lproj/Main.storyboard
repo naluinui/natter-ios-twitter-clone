@@ -69,9 +69,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="avatarImageView" destination="KO3-DT-sfR" id="0RG-xc-cT3"/>
                                             <outlet property="captionLabel" destination="hHS-2a-Nch" id="qtF-Nl-RQi"/>
                                             <outlet property="nameLabel" destination="wf0-GF-M6p" id="s1d-hd-HER"/>
-                                            <outlet property="profileImageView" destination="KO3-DT-sfR" id="Js0-k9-2Xl"/>
                                             <outlet property="timeLabel" destination="lnb-Ll-Nw9" id="hbc-IU-2E9"/>
                                         </connections>
                                     </tableViewCell>
@@ -359,7 +359,9 @@
                             <constraint firstItem="qb1-mJ-aiY" firstAttribute="centerX" secondItem="fFo-4M-xtj" secondAttribute="centerX" id="wOJ-tD-4CO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Create account" id="hlK-YF-9Bw"/>
+                    <navigationItem key="navigationItem" title="Create account" id="hlK-YF-9Bw">
+                        <barButtonItem key="backBarButtonItem" title=" " id="TJu-su-Mte"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="pcb-EO-0S2" id="T1F-ah-Taa"/>
                         <outlet property="emailField" destination="qb1-mJ-aiY" id="Zl2-V5-9Wg"/>
@@ -388,8 +390,8 @@
                                     <action selector="submitPressed" destination="63A-Tk-U0O" eventType="touchUpInside" id="zc3-i6-u8g"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password (at least 6 characters)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CR1-J1-Ivy">
-                                <rect key="frame" x="78" y="359" width="259" height="44"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password (at least 6 characters)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CR1-J1-Ivy">
+                                <rect key="frame" x="77.5" y="359" width="259" height="44"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="259" id="FeM-VX-wFr"/>
@@ -398,8 +400,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="join" secureTextEntry="YES"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d6C-Vi-VNN">
-                                <rect key="frame" x="78" y="295" width="259" height="44"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d6C-Vi-VNN">
+                                <rect key="frame" x="77.5" y="295" width="259" height="44"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="259" id="3da-c3-TGy"/>
@@ -415,12 +417,14 @@
                         <viewLayoutGuide key="safeArea" id="hZP-JV-mdL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="CR1-J1-Ivy" firstAttribute="centerX" secondItem="mxk-9Q-SCw" secondAttribute="centerX" id="9T7-De-K4k"/>
                             <constraint firstItem="fFT-Wf-4KG" firstAttribute="top" secondItem="CR1-J1-Ivy" secondAttribute="bottom" constant="30" id="Brm-r0-YJa"/>
                             <constraint firstItem="fFT-Wf-4KG" firstAttribute="centerY" secondItem="mxk-9Q-SCw" secondAttribute="centerY" id="En7-R6-kEJ"/>
                             <constraint firstItem="PED-sY-UcH" firstAttribute="top" secondItem="fFT-Wf-4KG" secondAttribute="bottom" constant="8" symbolic="YES" id="JG9-xC-ETO"/>
                             <constraint firstItem="PED-sY-UcH" firstAttribute="centerX" secondItem="mxk-9Q-SCw" secondAttribute="centerX" id="YzM-02-2fc"/>
                             <constraint firstItem="CR1-J1-Ivy" firstAttribute="top" secondItem="d6C-Vi-VNN" secondAttribute="bottom" constant="20" id="gxB-f1-uPW"/>
                             <constraint firstItem="fFT-Wf-4KG" firstAttribute="centerX" secondItem="mxk-9Q-SCw" secondAttribute="centerX" id="nP5-s5-hTg"/>
+                            <constraint firstItem="d6C-Vi-VNN" firstAttribute="centerX" secondItem="mxk-9Q-SCw" secondAttribute="centerX" id="rS2-t2-dKS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Existing account" id="Qlf-FL-UTb"/>
