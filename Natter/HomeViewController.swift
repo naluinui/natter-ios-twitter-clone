@@ -1,6 +1,4 @@
 import UIKit
-import FirebaseAuth
-import FirebaseFirestore
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -8,7 +6,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet var tweetButton: UIButton!
     
     var posts: [Post] = []
-    var listener: ListenerRegistration?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,32 +14,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if Auth.auth().currentUser != nil {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(openMyProfile))
-            tweetButton.isEnabled = true
-        } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign In", style: .plain, target: self, action: #selector(openLogin))
-            tweetButton.isEnabled = false
-        }
-        
-        let query = Firestore.firestore().collection("posts").order(by: "timestamp", descending: true)
-        listener = query.addSnapshotListener { (snapshot, error) in
-            guard let docs = snapshot?.documents else {
-                print("Error fetching document: \(error!)")
-                return
-            }
-            self.posts = docs.compactMap { (docSnapshot) -> Post? in
-                return Post.from(doc: docSnapshot)
-            }
-            self.tableView.reloadData()
-        }
+        // TODO: check if user is logged in
+        // TODO: query posts from Firestore
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        listener?.remove()
+        // TODO: remove snapshot listener
     }
     
     func setupView() {
@@ -67,8 +45,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @objc func openMyProfile() {
-        guard let userId = Auth.auth().currentUser?.uid else { return }
-        openProfile(userId: userId)
+        // TODO: open profile with curerent user id
     }
     
     @objc func openProfile(userId: String) {

@@ -16,11 +16,7 @@ class PostCell: UITableViewCell {
         nameLabel.text = post.owner.name
         timeLabel.text = post.timeString
         captionLabel.text = post.caption
-        downloadUserImage(userId: post.owner.id) { (image) in
-            if let image = image {
-                self.avatarImageView.image = image
-            }
-        }
+        // TODO: download user image
     }
 
 }

@@ -1,5 +1,4 @@
 import UIKit
-import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -19,16 +18,7 @@ class LoginViewController: UIViewController {
         
         activityIndicator.startAnimating()
     
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-            guard let strongSelf = self else { return }
-            
-            if let error = error {
-                print("Error logging in: \(error)")
-            } else {
-                strongSelf.activityIndicator.stopAnimating()
-                strongSelf.navigationController?.popToRootViewController(animated: true)
-            }
-        }
+        // TODO: sign in
     }
 
 }

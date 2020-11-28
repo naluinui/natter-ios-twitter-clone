@@ -1,6 +1,4 @@
 import UIKit
-import FirebaseAuth
-import FirebaseFirestore
 
 class RegisterViewController: UIViewController {
     
@@ -27,43 +25,9 @@ class RegisterViewController: UIViewController {
         errorLabel.text = ""
         activityIndicator.startAnimating()
         
-        // Create user in Firebase Authentication
-        Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
-            guard let strongSelf = self else { return }
-            
-            guard let authResult = authResult else {
-                strongSelf.errorLabel.text = error!.localizedDescription
-                print("Error creating user: \(error!)")
-                return
-            }
-            
-            let changeRequest = authResult.user.createProfileChangeRequest()
-            changeRequest.displayName = username
-            changeRequest.commitChanges { (error) in
-                if let error = error {
-                    print("Error updating profile: \(error)")
-                } else {
-                    // Complete (we are logged in!)
-                    strongSelf.activityIndicator.stopAnimating()
-                    strongSelf.navigationController?.popToRootViewController(animated: true)
-                }
-            }
-            
-            // Add user data to Firebase Firestore in the "users" collection
-            let userId = authResult.user.uid
-            let userData = [
-                "name": username,
-                "email": email,
-            ]
-            Firestore.firestore().collection("users").document(userId).setData(userData) { error in
-                guard error == nil else {
-                    strongSelf.errorLabel.text = error!.localizedDescription
-                    print("Error writing document: \(error!)")
-                    return
-                }
-            }
-            
-        }
+        // TODO: create user in Firebase Authentication
+            // TODO: update user profile (displayName)
+            // TODO: write user into users collection in Firestore
     }
 
 }

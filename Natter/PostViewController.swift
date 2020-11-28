@@ -1,6 +1,4 @@
 import UIKit
-import FirebaseAuth
-import FirebaseFirestore
 
 class PostViewController: UIViewController, UITextViewDelegate {
     
@@ -20,19 +18,9 @@ class PostViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func submit() {
-        guard let user = Auth.auth().currentUser, let displayName = user.displayName else {
-            print("You are not logged in!")
-            return
-        }
-        let post = Post(caption: textView.text ?? "", timestamp: Date(), owner: User(id: user.uid, name: displayName))
-        Firestore.firestore().collection("posts").addDocument(data: post.toDict()) { (err) in
-            if let error = err {
-                print("error creating post: \(error)")
-            } else {
-                print("post successfully!")
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
+        // TODO: check if user is logged in
+        // TODO: create post object
+        // TODO: write new post into Firestore
     }
     
     func textViewDidChange(_ textView: UITextView) {

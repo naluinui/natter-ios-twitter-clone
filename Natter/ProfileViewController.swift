@@ -1,6 +1,4 @@
 import UIKit
-import FirebaseAuth
-import FirebaseFirestore
 
 class ProfileViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -11,8 +9,7 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet var chooseAvatarButton: UIButton!
     
     var posts: [Post] = []
-    var userId: String = Auth.auth().currentUser?.uid ?? ""
-    var listener: ListenerRegistration?
+    var userId: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +20,7 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if (userId == Auth.auth().currentUser?.uid) {
-            logoutButton.isHidden = false
-            chooseAvatarButton.isHidden = false
-        }
+        // TODO: show logout & choose avatar button to self
         
         loadUser()
         loadPosts()
@@ -35,35 +29,16 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        listener?.remove()
+        // TODO: remove listener
     }
     
     func loadUser() {
-        Firestore.firestore().collection("users").document(userId).getDocument { (snapshot, error) in
-            guard let doc = snapshot else {
-                print("Error fetching document: \(error!)")
-                return
-            }
-            guard let user = User.from(doc: doc) else { return }
-            self.usernameLabel.text = user.name
-        }
-        downloadUserImage(userId: userId) { (image) in
-            if let image = image {
-                self.avatarImageView.image = image
-            }
-        }
+        // TODO: get user information from Firestore
+        // TODO: download user image from Firebase Storage
     }
     
     func loadPosts() {
-        let query = Firestore.firestore().collection("posts").whereField("userId", isEqualTo: userId).order(by: "timestamp", descending: true)
-        listener = query.addSnapshotListener { (snapshot, error) in
-            guard let docs = snapshot?.documents else {
-                print("Error fetching document: \(error!)")
-                return
-            }
-            self.posts = docs.compactMap { Post.from(doc: $0) }
-            self.tableView.reloadData()
-        }
+        // TODO: get user's post from Firestore, you might have to create indexing by following the link in log
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -78,7 +53,7 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
     }
     
     @IBAction func logout() {
-        try? Auth.auth().signOut()
+        // TODO: logout with Firebase Auth
         navigationController?.popToRootViewController(animated: true)
     }
     
@@ -94,11 +69,6 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as! UIImage
         self.avatarImageView.image = image
-        uploadUserImage(userId: userId, image: image) { (error) in
-            if let error = error {
-                print("Error: \(error)")
-            }
-            picker.dismiss(animated: true)
-        }
+        // TODO: upload image to Firebase Storage
     }
 }
