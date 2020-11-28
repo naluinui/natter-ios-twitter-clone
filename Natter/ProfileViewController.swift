@@ -55,7 +55,7 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
     }
     
     func loadPosts() {
-        let query = Firestore.firestore().collection("messages").whereField("userId", isEqualTo: userId).order(by: "timestamp", descending: true)
+        let query = Firestore.firestore().collection("posts").whereField("userId", isEqualTo: userId).order(by: "timestamp", descending: true)
         listener = query.addSnapshotListener { (snapshot, error) in
             guard let docs = snapshot?.documents else {
                 print("Error fetching document: \(error!)")
@@ -102,14 +102,4 @@ class ProfileViewController : UIViewController, UITableViewDataSource, UITableVi
             picker.dismiss(animated: true)
         }
     }
-//    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
-//        //avatarImageView.image = image
-//
-//        uploadUserImage(userId: userId, image: image) { (error) in
-//            if let error = error {
-//                print("Error: \(error)")
-//            }
-//            picker.dismiss(animated: true)
-//        }
-//   }
 }
