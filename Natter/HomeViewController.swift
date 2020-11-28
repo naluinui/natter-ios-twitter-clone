@@ -12,8 +12,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tweetButton.layer.cornerRadius = tweetButton.frame.width/2
-        tweetButton.layer.masksToBounds = true
+        setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +43,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewWillDisappear(animated)
         
         listener?.remove()
+    }
+    
+    func setupView() {
+        tweetButton.layer.cornerRadius = tweetButton.frame.width/2
+        tweetButton.layer.masksToBounds = true
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
